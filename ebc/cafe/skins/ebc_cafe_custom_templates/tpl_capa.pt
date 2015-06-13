@@ -1,0 +1,320 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+
+<head>
+    <metal:css fill-slot="style_slot">
+        <style type="text/css" media="all" tal:content="string:@import url($portal_url/cafe_capa.css);" />
+    </metal:css>
+</head>
+
+
+
+<body>
+
+<div metal:fill-slot="main">
+
+    <div metal:define-macro="main" id="capa"
+         tal:define="programa python:context.portal_catalog.searchResults(portal_type='Programa', sort_on='getData', sort_order='reverse', review_state='published')[:1][0];
+                     obj programa/getObject;
+                     data1 programa/getData;
+                     data python:data1.strftime('%d/%m/%Y');
+                     trechos python:obj.contentItems(filter={'portal_type':['Trecho',]});
+                     videos python:obj.contentItems(filter={'portal_type':['Video',]})[:1];
+                     trechosEstilo python:('trechos-full','trechos')[len(videos)];">
+
+
+        <div class="linha1">
+
+            <div class="foto">
+                <img tal:attributes="src python:context.getFotoCapa()" height="306" width="281">
+            </div>
+
+
+
+            <div class="box-cinza">
+
+
+                <div class="conteudo">
+
+
+                    <div class="data" tal:content="data" />
+
+
+                    <div class="icones">
+                        <a tal:attributes="href string:${context/portal_url}/sendto_form"><img src="" tal:attributes="src string:${context/portal_url}/mail_icon.gif" /></a>
+                        <a href="javascript:window.print()"><img src="" tal:attributes="src string:${context/portal_url}/print_icon.gif" /></a>
+                        <a tal:attributes="href string:${context/portal_url}/programas/podcast.xml"><img src="" tal:attributes="src string:${context/portal_url}/podcast_icon.gif" /></a>
+                        <a tal:attributes="href string:${context/portal_url}/programas/RSS"><img src="" tal:attributes="src string:${context/portal_url}/rss.gif" /></a>
+                    </div>
+
+
+                    <br />
+                    <br />
+
+
+                    <div class="titulo">
+                        <a tal:attributes="href string:${obj/absolute_url}"
+                           tal:content="programa/Title" />
+                    </div>
+                    
+
+                    <br />
+                    <br />
+
+
+                    <div class="player">
+                        <object type="application/x-shockwave-flash" width="250" height="20"
+                            tal:attributes="data string:${context/portal_url}/player_mp3_maxi.swf">
+                            <param name="movie" tal:attributes="value string:{context/portal_url}/player_mp3_maxi.swf" />
+                            <param name="bgcolor" value="#E8EEE8" />
+                            <param name="FlashVars" tal:attributes="value string:width=250&amp;showinfo=0&amp;showvolume=1&amp;bgcolor1=cccccc&amp;bgcolor2=cfcfcf&amp;slidercolor1=eeeeee&amp;slidercolor2=dddddd&amp;sliderovercolor=ffffff&amp;buttonovercolor=eeeeee&amp;mp3=${obj/absolute_url}/at_download/audio.mp3" />
+                            <embed href="/support/flash/ts/documents/myFlashMovie.swf" 
+                                   tal:attributes="href string:{context/portal_url}/player_mp3_maxi.swf"
+                                   quality="high" bgcolor="#FFFFFF" 
+                                   width="250" height="20" 
+                                   name="myMovieName" ALIGN="" 
+                                   type="application/x-shockwave-flash" 
+                                   pluginspage="http://www.macromedia.com/go/getflashplayer"></embed>
+                        </object>
+                        <br /> 
+                        <a tal:attributes="href string:${obj/absolute_url}/at_download/audio.mp3" title="Baixar arquivo com qualidade baixa (64 kbps)">Qualidade baixa: <span tal:content="python:obj.get_size()" /></a>
+
+                    	<tal:cond condition="python:cmp(obj.get_size_alta(),'0.00b') ">
+                        -
+                        <a tal:attributes="href string:${obj/absolute_url}/at_download/alta" title="Baixar arquivo com qualidade alta (128 kbps)">Qualidade alta: <span tal:content="python:obj.get_size_alta()" /></a>
+
+                        </tal:cond>
+
+                    </div>    
+
+       
+                    <br />
+                    <br />
+
+
+                    <div class="descricao" tal:content="structure obj/Description" />
+
+
+                    <br />
+
+                    <div class="transcricao">
+                        <a tal:attributes="href string:${obj/absolute_url}/">Transcri&ccedil;&atilde;o</a>
+                    </div> 
+
+
+                </div>
+
+
+
+                <div class="anteriores">
+                    <a tal:attributes="href string:${obj/absolute_url}/programas">Programas Anteriores</a>
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+
+
+        <div class="linha2">
+
+            <div class="esquerda">
+
+                <div class="enquete"
+                     tal:define="polls python:context.portal_catalog(meta_type='PlonePopoll',sort_on='created',sort_order='reverse',review_state='published')[:2]">
+
+                    <span class="tit-enquete">Enquete</span>
+                    <br />
+                    <br />
+                    <tal:rep repeat="poll polls"> 
+
+
+                    <div tal:define="obj poll/getObject;
+                                     pergunta obj/getQuestion;
+                                     opcoes obj/getChoices;
+                                     results obj/getResults;
+                                     canVote obj/canVote;">
+
+                        <form name="results"
+                              action=""
+                              method="post"
+                              enctype="multipart/form-data"
+                              tal:define="object_url python:obj.absolute_url();"
+                              tal:attributes="action string:${object_url}/vote">
+
+                            <p tal:content="pergunta"/>
+                            <ul tal:condition="canVote">
+                                <li tal:repeat="choice opcoes">
+                                    <input class="noborder"
+                                           name="choices"
+                                           type="radio"
+                                           tal:attributes="value repeat/choice/index;
+                                                           id string:cb${repeat/choice/index};" />
+                                    <span tal:replace="python:choice">Choice</span>
+                                </li>
+                            </ul>
+
+                            <ul tal:condition="not: canVote">
+                                <li tal:repeat="choice results">
+                                    <tal:def define="choice_id python: choice[0];
+		                                             choice_count python: choice[1];
+				                                     choice_percentage python: '%0.2f' % choice[2];
+				                                     bar_percentage python: int(choice[2]) or 1;
+                                                     number repeat/choice/number;
+                                                     number python:number % 10">
+                                        <span tal:replace="choice_id">Choice</span>
+                                        <br />
+                                        <img height="10" tal:attributes="width string:${bar_percentage}; src string:${portal_url}/bar_${number}.gif; alt string:${choice_percentage}%" />
+                                        <strong tal:content="string:${choice_count} (${choice_percentage}%)">44%</strong>
+                                    </tal:def>
+                                </li>
+                            </ul>
+
+                            <input type="hidden" name="redirect_url" tal:attributes="value string:${portal_url}">
+
+                            <input type="submit"
+                                   name="vote"
+                                   value="Vote"
+                                   i18n:attributes="value" 
+                                   tal:condition="canVote"/>
+                        </form> 
+                    </div>
+                                        
+                    
+                    
+                    </tal:rep>
+                </div>
+                <!-- Fim Enquete -->
+
+                <!-- Mais Cafe -->
+                <div class="maiscafe">
+                    <span class="tit-enquete">Mais Caf&eacute;</span>                    
+                    <br />
+                    <br />
+                    <p>
+                        <strong>Widget</strong> - Tenha o Caf&eacute; toda semana na sua &aacute;rea de trabalho
+                    </p>
+                    <p><a href="http://cafe.ebc.com.br/tpl_maiscafe">MAC - GNU/Linux - Windows</a></p>
+                    <hr>
+                    <p>Divulgue o Caf&eacute; em seu site:</p>
+                    <p style="text-align:center">
+                        <a href="http://cafe.ebc.com.br/tpl_maiscafe">
+                            <img tal:attributes="src string:${context/portal_url}/logo-pequena.jpg" />
+                        </a>
+                    </p>
+                </div>
+                <!-- Fim Mais Cafe -->
+
+
+                <div class="blog">
+                    Acesse tamb&eacute;m: <a href="http://blog.planalto.gov.br" target="_blank">blog.planalto.gov.br</a>
+                </div>
+            </div>
+            <!-- Fim Linha 2 - Coluna 1 -->
+
+
+            <!-- Linha 2 - Coluna 2 -->
+            <div class="direita">
+
+
+
+                <!-- box -->
+                <div class="box"
+                     tal:condition="python: len(videos)+len(trechos) > 0 ">
+
+
+
+                    <!-- Videos -->
+                    <div class="videos" tal:condition="videos"> 
+                        <div class="video" >
+                            <tal:rep repeat="video videos">
+                            <span class="vid-titulo" tal:content="string:Trechos do programa do dia ${data}" />
+
+                            <object type="application/x-shockwave-flash"
+                                    id="videoplayer" width="288" height="200" 
+                                    tal:attributes="data string:${here/portal_url}/videoplayer.swf;
+                                                    id string:videoplayer${repeat/video/number}"
+                                    tal:define="video python:video[1].absolute_url">
+                                <param name="FlashVars" tal:attributes="value string:myFlashVar=${video}/at_download/file">
+                                <param name="quality" value="high">
+                                <embed src="videoplayer.swf" 
+                                       tal:attributes="value string:myFlashVar=${video}/at_download/file"
+                                       quality="high" 
+                                       bgcolor="#cccccc" 
+                                       width="280" 
+                                       height="200" 
+                                       allowScriptAccess="sameDomain" 
+                                       allowFullScreen="false" 
+                                       type="application/x-shockwave-flash" 
+                                       pluginspage="http://www.macromedia.com/go/getflashplayer" />
+                            </object>
+
+                            <p class="vid-description" tal:content="python:video[1].Title()" />
+                            </tal:rep>
+                        </div>
+                    </div>
+                    <!-- Fim Videos -->
+
+                    <!-- Trechos -->
+                    <div tal:condition="trechos"
+                         tal:attributes="class trechosEstilo">
+
+                        <div class="trecho">
+                            <span class="vid-titulo" tal:content="string:Trechos do programa do dia ${data}" 
+                                  tal:condition="not: videos" />
+                            <br />
+                            <tal:rep repeat="trecho trechos">
+                                <span tal:replace="python:trecho[1].Title()" />
+                                <br />
+                                <br />
+                                <object type="application/x-shockwave-flash" width="200" height="20"
+                                    tal:attributes="data string:${context/portal_url}/player_mp3_maxi.swf"
+                                    tal:define="audio python:trecho[1].absolute_url">
+                                    <param name="movie" tal:attributes="value string:{context/portal_url}/player_mp3_maxi.swf" />
+                                    <param name="bgcolor" value="#ffffff" />
+                                    <param name="FlashVars" tal:attributes="value  string:width=200&amp;showinfo=0&amp;showvolume=1&amp;bgcolor1=cccccc&amp;bgcolor2=cfcfcf&amp;slidercolor1=eeeeee&amp;slidercolor2=dddddd&amp;sliderovercolor=ffffff&amp;buttonovercolor=eeeeee&amp;mp3=$audio/at_download/file" />
+                                </object>
+                                <br />
+                                <a tal:attributes="href python:trecho[1].absolute_url() + '/at_download/file'">Baixar trecho</a>
+                                <br />
+                                <br />
+                                <hr tal:condition="not: repeat/trecho/end" />
+                            </tal:rep>
+                        </div>
+                    </div>
+                    <!-- Fim Trechos -->
+                </div>
+                <!-- Fim Box -->  
+
+                <!-- Tags -->
+                <div id="tags"
+                     tal:define="tags python:here.portal_catalog.uniqueValuesFor('Subject');">
+                    <p class="titulo">Assuntos</p>
+                    <ul class="tag">
+                        <li tal:repeat="tag tags">  
+                            <a tal:content="tag" 
+                               tal:attributes="class python:'tamanho'+str(random.randint(1,4));
+                                               href string:${context/portal_url}/search?Subject:list=$tag"></a>
+                        </li>
+
+                    </ul>
+                </div>
+                <!-- Fim Tags -->
+
+            </div>
+            <!-- Fim Linha 2 - Coluna 2 -->
+        </div>
+        <!-- Fim Linha 2 -->
+
+    </div>
+</div>
+</body>
+</html>

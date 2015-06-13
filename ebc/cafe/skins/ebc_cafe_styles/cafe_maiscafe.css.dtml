@@ -1,0 +1,37 @@
+/* <dtml-with base_properties> (do not remove this :) */
+/* <dtml-call "REQUEST.set('portal_url', portal_url())"> (not this either :) */
+
+
+#maiscafe {
+    border: 2px solid #E6EDE6;
+    padding: 20px;
+}
+
+#maiscafe .titulo {
+    font-weight: bold;
+    font-size: 14px;
+    color: #78906d;
+    text-align: center;
+}
+
+
+#maiscafe .titulo2 {
+    font-weight: bold;
+    font-size: 12px;
+    text-align: center;
+}
+
+#maiscafe .widget {
+    width: 50%;
+    float: left;
+    margin-top: 20px;
+}
+
+#maiscafe .divulgue {
+    width: 48%;
+    float: right;
+    margin-top: 20px;
+}
+
+
+/* </dtml-with> */

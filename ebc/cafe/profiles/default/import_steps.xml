@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<import-steps>
+  <import-step id="ebc.cafe_theme.various"
+               version="20090831-01"
+               handler="ebc.cafe.setuphandlers.setupVarious"
+               title="Cafe Theme: miscellaneous import steps">
+    <dependency step="skins" />
+    Various import steps that are not handled by GS import/export
+    handlers.
+  </import-step>
+</import-steps>

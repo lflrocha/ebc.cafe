@@ -1,0 +1,13 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:cmf="http://namespaces.zope.org/cmf"
+    i18n_domain="ebc.cafe">
+
+  <!-- File System Directory Views registration -->
+  <cmf:registerDirectory name="ebc_cafe_custom_images"/>
+  <cmf:registerDirectory name="ebc_cafe_custom_templates"/>
+  <cmf:registerDirectory name="ebc_cafe_styles"/>
+  <cmf:registerDirectory name="ebc_cafe_js"/>
+  <cmf:registerDirectory name="ebc_cafe_players"/>
+    
+</configure>

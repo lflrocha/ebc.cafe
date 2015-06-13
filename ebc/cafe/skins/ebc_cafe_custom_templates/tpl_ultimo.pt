@@ -1,0 +1,250 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+
+<head>
+    <metal:css fill-slot="style_slot">
+        <style type="text/css" media="all" tal:content="string:@import url($portal_url/cafe_programa.css);" />
+    </metal:css>
+</head>
+
+
+<body>
+
+    <div metal:fill-slot="main">
+
+        <div metal:define-macro="main" id="programa"
+            tal:define="ultimo python:context.portal_catalog.searchResults(portal_type='Programa', sort_on='getData', sort_order='reverse', review_state='published')[0];
+                        obj ultimo/getObject;
+                        data python:obj.getData() + 0.1;
+                        trechos python:obj.contentItems(filter={'portal_type':['Trecho',]});
+                        videos python:obj.contentItems(filter={'portal_type':['Video',]});
+                        transcricao python:obj.getTranscricao() or 'Em breve.'">
+
+            <div class="interno">
+
+                <span class="data"
+                    tal:content="python:data.strftime('%d/%m/%Y')" />
+                <div class="icones">
+                    <a tal:attributes="href string:${context/portal_url}/sendto_form"><img src="" tal:attributes="src string:${context/portal_url}/mail_icon.gif" /></a>
+                    <a href="javascript:window.print()"><img src="" tal:attributes="src string:${context/portal_url}/print_icon.gif" /></a>
+                    <a tal:attributes="href string:${context/portal_url}/programas/podcast.xml"><img src="" tal:attributes="src string:${context/portal_url}/podcast_icon.gif" /></a>
+                    <a tal:attributes="href string:${context/portal_url}/programas/RSS"><img src="" tal:attributes="src string:${context/portal_url}/rss.gif" /></a>
+                </div>
+
+
+
+                <div class="titulo"
+                    tal:content="ultimo/Title" /> 
+
+                <br />
+                <br />
+
+                <div class="resumo"
+                     tal:content="ultimo/Description" />
+
+
+                <div class="player">
+
+                    <object type="application/x-shockwave-flash" width="250" height="20"
+                        tal:attributes="data string:${context/portal_url}/player_mp3_maxi.swf">
+                        <param name="movie" tal:attributes="value string:{context/portal_url}/player_mp3_maxi.swf" />
+                        <param name="bgcolor" value="#ffffff" />
+                        <param name="FlashVars" tal:attributes="value  string:width=250&amp;showinfo=0&amp;showvolume=1&amp;bgcolor1=cccccc&amp;bgcolor2=cfcfcf&amp;slidercolor1=eeeeee&amp;slidercolor2=dddddd&amp;sliderovercolor=ffffff&amp;buttonovercolor=eeeeee&amp;mp3=${ultimo/absolute_url}/at_download/audio.mp3" />
+                    </object>
+                    <br />
+
+                    <a tal:attributes="href string:${obj/absolute_url}/at_download/audio.mp3" title="Baixar arquivo com qualidade baixa (64 kbps)">Qualidade baixa: <span tal:content="python:obj.get_size()" /></a>
+
+                    <tal:cond condition="python:cmp(obj.get_size_alta(),'0.00b') ">
+                    -
+                    <a tal:attributes="href string:${obj/absolute_url}/at_download/alta" title="Baixar arquivo com qualidade alta (128 kbps)">Qualidade alta: <span tal:content="python:obj.get_size_alta()" /></a>
+
+                    </tal:cond>
+
+                </div>
+
+
+
+                <div class="multimidia" >
+                    <div class="esquerda" tal:condition="trechos">
+                        <h2 class="destaque">Trechos</h2>
+                        <div class="trecho">
+                            <tal:rep repeat="trecho trechos">
+                                <span tal:replace="python:trecho[1].Title()" />
+                                <br />
+                                <br />
+                                <object type="application/x-shockwave-flash" width="250" height="20"
+                                    tal:attributes="data string:${context/portal_url}/player_mp3_maxi.swf"
+                                    tal:define="audio python:trecho[1].absolute_url()">
+                                    <param name="movie" tal:attributes="value string:{context/portal_url}/player_mp3_maxi.swf" />
+                                    <param name="bgcolor" value="#ffffff" />
+                                    <param name="FlashVars" tal:attributes="value  string:width=250&amp;showinfo=0&amp;showvolume=1&amp;bgcolor1=cccccc&amp;bgcolor2=cfcfcf&amp;slidercolor1=eeeeee&amp;slidercolor2=dddddd&amp;sliderovercolor=ffffff&amp;buttonovercolor=eeeeee&amp;mp3=$audio/at_download/file" />
+                                </object>
+                                <br />
+                                <a tal:attributes="href python:trecho[1].absolute_url() + '/at_download/file'">Baixar arquivo</a>
+                                <br />
+                                <br />
+                                <br />
+                            </tal:rep>
+                        </div>
+                    </div>
+
+                    <div class="direita"> 
+                        <div class="video" tal:condition="videos">
+                            <tal:rep repeat="video videos">
+                                <object type="application/x-shockwave-flash"
+                                        id="videoplayer" width="288" height="200" 
+                                        tal:attributes="data string:${context/portal_url}/videoplayer.swf;"
+                                        tal:define="video python:video[1].absolute_url">
+                                    <param name="FlashVars" tal:attributes="value string:myFlashVar=$video/at_download/file">
+                                    <param name="quality" value="high">
+                                    <param name="menu" value="false">
+                                    <param name="wmode" value="transparent">
+                                    <embed src="videoplayer.swf" 
+                                           tal:attributes="value string:myFlashVar=$video/at_download/file"
+                                           quality="high" 
+                                           bgcolor="red" 
+                                           width="280" 
+                                           height="200" 
+                                           allowScriptAccess="sameDomain" 
+                                           allowFullScreen="false" 
+                                           type="application/x-shockwave-flash" 
+                                           pluginspage="http://www.macromedia.com/go/getflashplayer" />
+                                </object>
+                                <span tal:content="python:video[1].Title()" />
+                                <br />
+                                <a tal:attributes="href python:video[1].absolute_url() + '/at_download/file'">Baixar arquivo</a>
+                                <br />
+                                <br />
+                            </tal:rep>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="texto">
+                    <h2 class="destaque">Transcri&ccedil;&atilde;o</h2>
+                    <p class="transcricao" tal:content="structure transcricao" />
+                    <br />
+                    <span class="assuntos" tal:condition="ultimo/Subject">Assuntos:
+                        <tal:rep repeat="assunto ultimo/Subject">
+                            <a tal:attributes="href string:${context/portal_url}/search?Subject:list=$assunto"
+                               tal:content="assunto" /><span tal:replace="string:, " tal:condition="not: repeat/assunto/end" />
+                        </tal:rep>
+                    </span>
+                </div>
+                <br />
+                <br />
+
+
+
+                <div id="viewlet-social-bookmarks">
+					<div id="shareit" class="hidden">
+						<div id="exit">
+					    	<h4>Compartilhe:</h4>
+
+						    <ul id="viewlet_bookmarks"
+						        tal:define="url obj/absolute_url;
+						                    titulo obj/Title;">
+						        <li>
+						            <a target="_blank"
+						               tal:attributes="href string:http://del.icio.us/post?url=${url}&title=${titulo}">
+						                <img src="http://cafe.ebc.com.br/++resource++sb_images/delicious.png"
+						                     alt="Del.icio.us" />&nbsp;Del.icio.us
+						            </a>
+						        </li>
+						        <li>
+						            <a tal:attributes="href string:http://www.facebook.com/share.php?u=${url}"
+						               target="_blank">
+						                <img src="http://cafe.ebc.com.br/++resource++sb_images/facebook.jpg"
+						                     alt="Facebook" />&nbsp;Facebook
+						            </a>
+						        </li>
+						        <li>
+						            <a tal:attributes="href string:http://www.google.com/bookmarks/mark?op=add&bkmk=${url}&title=&{titulo}"
+						               target="_blank">
+						                <img src="http://cafe.ebc.com.br/++resource++sb_images/google.jpg"
+						                     alt="Google Bookmarks" />&nbsp;Google Bookmarks
+						            </a>
+						        </li>
+						        <li>
+						            <a tal:attributes="href string:https://favorites.live.com/quickadd.aspx?marklet=1&mkt=en-us&url=${url}&title=${titulo}&top=1"
+						               target="_blank">
+						                <img src="http://cafe.ebc.com.br/++resource++sb_images/live.jpg"
+						                     alt="Live" />&nbsp;Live
+						            </a>
+						        </li>
+						        <li>
+						            <a tal:attributes="href string:http://bookmarks.yahoo.com/toolbar/savebm?opener=tb&u=${url}&t=${titulo}"
+						               target="_blank">
+						                <img src="http://cafe.ebc.com.br/++resource++sb_images/my_yahoo.jpg"
+						                     alt="Yahoo Bookmarks" />&nbsp;Yahoo Bookmarks
+						            </a>
+						        </li>
+						        <li>
+						            <a tal:attributes="href string:http://technorati.com/faves?add=${url}"
+						               target="_blank">
+						                <img src="http://cafe.ebc.com.br/++resource++sb_images/technorati.png"
+						                     alt="Technorati" />&nbsp;Technorati
+						            </a>
+						        </li>
+						        <li>
+						            <a tal:attributes="href string:http://twitter.com/home?status=${url}"
+						               target="_blank">
+						                <img src="http://cafe.ebc.com.br/++resource++sb_images/twitter.gif"
+						                     alt="Twitter" />&nbsp;Twitter
+						            </a>
+						        </li>
+						        <li>
+						            <a tal:attributes="href string:http://www.myspace.com/Modules/PostTo/Pages/?c=${url}&t=${titulo}"
+						               target="_blank">
+						                <img src="http://cafe.ebc.com.br/++resource++sb_images/myspace.png"
+						                     alt="MySpace" />&nbsp;MySpace
+						            </a>
+						        </li>
+						        <li>
+						            <a tal:attributes="href string:http://de.lirio.us/rubric/post?uri=${url}&title=${titulo}"
+						               target="_blank">
+						                <img src="http://cafe.ebc.com.br/++resource++sb_images/delirious.png"
+						                     alt="De.lirio.us" />&nbsp;De.lirio.us
+						            </a>
+						        </li>
+						        <li>
+						            <a tal:attributes="href string:http://digg.com/submit?phase=2&url=${url}&title=${titulo}"
+						               target="_blank">
+						                <img src="http://cafe.ebc.com.br/++resource++sb_images/digg.png"
+						                     alt="Digg" />&nbsp;Digg
+						            </a>
+						        </li>
+						        <li>
+						            <a tal:attributes="href string:http://slashdot.org/bookmark.pl?title=${titulo}&url=${url}"
+						               target="_blank">
+						                <img src="http://cafe.ebc.com.br/++resource++sb_images/slashdot.png"
+						                     alt="Slashdot" />&nbsp;Slashdot
+						            </a>
+						        </li>
+						        <li>
+						            <a tal:attributes="href string:http://www.stumbleupon.com/url/${url}"
+						               target="_blank">
+						                <img src="http://cafe.ebc.com.br/++resource++sb_images/stumbleupon.png"
+						                     alt="StumbleUpon" />&nbsp;StumbleUpon
+						            </a>
+						        </li>
+						    </ul>
+					    	<div class="visualClear"></div>
+						</div>
+					</div>
+				</div>
+                <div class="voltar">
+                    <a href="javascript:history.back()">Voltar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

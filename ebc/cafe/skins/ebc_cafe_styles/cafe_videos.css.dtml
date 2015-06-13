@@ -1,0 +1,39 @@
+/* <dtml-with base_properties> (do not remove this :) */
+/* <dtml-call "REQUEST.set('portal_url', portal_url())"> (not this either :) */
+
+#videos {
+  height: 380px;
+  background-color: #DEE5DE;
+  margin: 0 -24px;
+  padding: 20px;
+}
+
+#videos .videos {
+  width: 68%;
+  float: left;
+  height: 243px;
+  text-align: center;
+}
+
+#videos .ultimos {
+  width: 29%;
+  float: right;
+  height: 360px;
+  background-color: #EAECE9;
+  padding: 10px;
+  text-align: center;
+}
+
+#videos .ultimos img{
+  padding: 5px;
+}
+
+#videos .titulo {
+  font-weight: bold;
+  font-size: 14px;
+  color: #78906d;
+  border-bottom: 0px;
+  padding: 3px 30px;
+}
+
+/* </dtml-with> */

@@ -1,0 +1,69 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="ebc.cafe">
+
+  <include package="plone.app.contentmenu" />
+
+  <!-- -*- extra stuff goes here -*- -->
+
+  <!-- 'Cafe Theme' Zope 3 browser layer -->
+  <interface
+      interface=".interfaces.IThemeSpecific"
+      type="zope.publisher.interfaces.browser.IBrowserSkinType"
+      name="Cafe Theme"
+      />
+  
+  <!-- Viewlets registration -->
+  <!-- Zope 3 browser resources -->
+
+  <!-- Resource directory for images -->
+  <browser:resourceDirectory
+      name="ebc.cafe_theme.images"
+      directory="images"
+      layer=".interfaces.IThemeSpecific"
+      />
+
+  <!-- Resource directory for stylesheets -->
+  <browser:resourceDirectory
+      name="ebc.cafe_theme.stylesheets"
+      directory="stylesheets"
+      layer=".interfaces.IThemeSpecific"
+      />
+
+
+  <!-- Custom templates -->
+
+  <browser:viewlet
+      name="cafe.rodape"
+      manager="plone.app.layout.viewlets.interfaces.IPortalFooter"
+      class=".viewlets.RodapeViewlet"
+      layer=".interfaces.IThemeSpecific"
+      permission="zope2.View" 
+      />  
+      
+  <browser:viewlet
+      name="plone.global_sections"
+      manager="plone.app.layout.viewlets.interfaces.IPortalTop"
+      class="plone.app.layout.viewlets.common.GlobalSectionsViewlet"
+      layer=".interfaces.IThemeSpecific"
+      permission="zope2.View" 
+  />      
+
+  <browser:viewlet
+      name="cafe.searchbox"
+      manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
+      class=".viewlets.SearchBoxViewlet"
+      layer=".interfaces.IThemeSpecific"
+      permission="zope2.View" 
+      />
+
+  <browser:viewlet
+      name="cafe.destaque"
+      manager="plone.app.layout.viewlets.interfaces.IPortalTop"
+      class=".viewlets.DestaqueViewlet"
+      layer=".interfaces.IThemeSpecific"
+      permission="zope2.View" 
+      />
+
+</configure>

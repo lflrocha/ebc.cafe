@@ -1,0 +1,6 @@
+<div id="portal-destaque"
+     i18n:domain="plone">
+
+    "<span tal:content="python:context.getUltimaFrase()" />"
+
+</div>

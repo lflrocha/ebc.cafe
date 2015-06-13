@@ -1,0 +1,77 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+
+<head>
+    <metal:css fill-slot="style_slot">
+        <style type="text/css" media="all" tal:content="string:@import url($portal_url/cafe_multimidia.css);" />
+    </metal:css>
+</head>
+
+
+
+<body>
+    <div metal:fill-slot="main">
+        <div metal:define-macro="main" id="multimidia">
+            
+            <div class="videos">
+                <p class="titulo">
+                    <a tal:attributes="href string:${context/portal_url}/multimidia/videos">Galeria de v&iacute;deos (+)</a>
+                </p>
+                <div class="box"
+                     tal:define="video python:context.portal_catalog.searchResults(Type='Video',sort_on='getData',sort_order='reverse')[0];">
+                            <object type="application/x-shockwave-flash"
+                                    id="videoplayer" width="390" height="260" 
+                                    tal:attributes="data string:${here/portal_url}/videoplayer.swf;
+                                                    id string:videoplayer"
+                                    tal:define="video python:video.getObject().absolute_url()">
+                                <param name="FlashVars" tal:attributes="value string:myFlashVar=${video}/at_download/file">
+                                <param name="quality" value="high">
+                                <param name="bgcolor" value="#EAECE9">
+                                <embed src="videoplayer.swf" 
+                                       tal:attributes="value string:myFlashVar=${video}/at_download/file"
+                                       quality="high" 
+                                       bgcolor="#EAECE9" 
+                                       width="390" 
+                                       height="260" 
+                                       allowScriptAccess="sameDomain" 
+                                       allowFullScreen="false" 
+                                       type="application/x-shockwave-flash" 
+                                       pluginspage="http://www.macromedia.com/go/getflashplayer" />
+                            </object>
+
+                </div>
+            </div>
+
+            <div class="fotos">
+                <p class="titulo">
+                    <a tal:attributes="href string:${context/portal_url}/multimidia/fotos">Galeria de fotos (+)</a>
+                </p>
+                <div class="box"
+                     tal:define="fotos python:context.portal_catalog.searchResults(Type='Image')[:6]">
+                    <tal:rep repeat="foto fotos">
+                            <img tal:replace="structure python:foto.getObject().tag(scale='thumb')" />  
+                    </tal:rep>
+                </div>
+            </div>
+            <div class="trilha">
+                <p class="titulo">Trilha</p>
+                <div class="box">
+                    <object type="application/x-shockwave-flash" width="250" height="20"
+                        tal:attributes="data string:${context/portal_url}/player_mp3_maxi.swf"
+                        tal:define="arquivo string:${here/absolute_url}/TrilhaAbertura.mp3">
+                        <param name="movie" tal:attributes="value string:{context/portal_url}/player_mp3_maxi.swf" />
+                        <param name="bgcolor" value="#E8EEE8" />
+                        <param name="FlashVars" tal:attributes="value  string:width=250&amp;showinfo=0&amp;showvolume=1&amp;bgcolor1=cccccc&amp;bgcolor2=cfcfcf&amp;slidercolor1=eeeeee&amp;slidercolor2=dddddd&amp;sliderovercolor=ffffff&amp;buttonovercolor=eeeeee&amp;mp3=${arquivo}" />
+                    </object>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,58 @@
+/* <dtml-with base_properties> (do not remove this :) */
+/* <dtml-call "REQUEST.set('portal_url', portal_url())"> (not this either :) */
+
+#contato {
+  background-color: #d5dcd5;
+  width: 900px;  
+  height: 308px;
+  margin: 0 -23px;
+}
+
+#contato .esquerda {
+  float: left;
+  width: 369px;
+}
+
+#contato .direita {
+  float: left;
+  width: 481px;
+  padding: 5px 25px;
+}
+
+#contato p {
+  color: #2d1813;
+  font-size: 11px;
+  font-weight: bold;
+  line-height: normal;
+}
+
+#contato label {
+  color: #2d1813;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+#contato input,
+#contato textarea {
+  font-size: 9px;
+}
+
+#contato input {
+  background-color: white;
+}
+
+#contato .field {
+  margin-bottom: 0.1em;
+}
+
+#contato .fieldRequired{
+  color: #d5dcd5;
+  font-size: 10px;
+}
+
+#contato .formHelp {
+  color: #2d1813;
+  font-size: 10px;
+}
+
+/* </dtml-with> */

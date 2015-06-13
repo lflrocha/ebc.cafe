@@ -1,0 +1,61 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+
+<head>
+    <metal:css fill-slot="style_slot">
+        <style type="text/css" media="all" tal:content="string:@import url($portal_url/cafe_maiscafe.css);" />
+    </metal:css>
+</head>
+
+
+
+<body>
+
+<div metal:fill-slot="main">
+
+    <div metal:define-macro="main" id="maiscafe" class="maiscafe">
+        <p class="titulo">Mais Caf&eacute;</p>
+
+        <p>
+            Al&eacute;m dos &iacute;cones <img tal:attributes="src string:${portal_url}/mail_icon.gif"><img                             tal:attributes="src string:${portal_url}/print_icon.gif"><img tal:attributes="src string:${portal_url}/podcast_icon.gif"><img tal:attributes="src string:${portal_url}/rss.gif">            
+            dispon&iacute;veis em cada programa, aqui voc&ecirc; 
+            pode pode recomendar o Caf&eacute; aos seus amigos e tamb&eacute;m receber 
+            atualiza&ccedil;&otilde;es com rapidez e facilidade.
+        </p>
+
+
+        <div class="widget">
+            <p class="titulo2">Widget</p>
+            <p style="text-align: center; margin: 20px 0;">
+                <a href="http://cafe.ebc.com.br/cafe.zip">Mac</a> - 
+                <a href="http://cafe.ebc.com.br/cafe.zip">GNU/Linux</a> - 
+                <a href="http://cafe.ebc.com.br/Cafe.gadget">Windows</a>
+            </p>
+
+            <p>
+                Você pode instalar este aplicativo para ter o Caf&eacute; na sua 
+                &aacute;rea de trabalho toda semana.
+            </p>
+        </div>
+
+        <div class="divulgue">
+            <p class="titulo2">Divulgue no seu site:</p>
+            <img src="http://cafe.ebc.com.br/banner.jpg"><br /><br />
+            <textarea><a href="http://cafe.ebc.com.br" target="_blank"><img src="http://cafe.ebc.com.br/banner.jpg"></a></textarea>
+            <p>Copie o c&oacute;digo acima e use para colocar um banner no seu site.</p>
+        </div>
+  
+      <div class="visualClear" id="clear-space-before-wrapper-table"><!-- --></div>
+
+
+
+    </div>
+
+</div>
+</body>
+</html>

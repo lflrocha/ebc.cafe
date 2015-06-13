@@ -1,0 +1,129 @@
+/* <dtml-with base_properties> (do not remove this :) */
+/* <dtml-call "REQUEST.set('portal_url', portal_url())"> (not this either :) */
+
+/* MAIN TEMPLATE */
+
+body {
+  color: #2d1813;
+  font-size: 11px;
+  background-image: url("&dtml-portal_url;/background-site.jpg");
+}
+
+#visual-portal-wrapper {
+  width: 900px !important;
+  margin: 0 auto;
+}
+
+#portal-destaque {
+  color: #ffffff;
+  font-family: "Verdana";
+  font-size: 150%;
+  text-align: center;
+  width: 500px;
+  margin: 1.2em auto;
+}
+
+#portal-header {
+  background-color: #ffffff;
+}
+
+#portal-logo img {
+  margin: 0px;
+}
+
+#portal-searchbox {
+  margin-top: 88px;
+}
+
+#portal-searchbox .searchLabel {
+  font-family: "Trebuchet MS";
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+#searchGadget {
+  border: 1px solid #7d7d7d;
+  margin-bottom: 5px;
+}
+
+#searchButton {
+  border: 0px;
+  margin-bottom: 6px;
+}
+
+#portal-searchbox .SearchableText {
+  background-color: #F1EFED;
+}
+
+#portal-searchbox .searchSection {
+  display: none;
+}
+
+.livesearchContainer {
+  color: #392621;
+} 
+
+#portal-globalnav {
+  text-align: center;  
+  background-image: url("&dtml-portal_url;/background-menu.jpg");
+  height: 20px;
+  padding: 8px 0px 0px 0px;
+}
+
+#portal-globalnav li {
+  margin: 0px 30px;
+}
+
+#portal-globalnav li a,
+#portal-globalnav li a:hover,
+#portal-globalnav li.selected a {
+  color: #fbf9f8;
+  font-family: "Trebuchet MS";
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  background-color: transparent;
+  border: 0px;
+  padding: 0px;
+}
+
+#portal-globalnav li a:hover,
+#portal-globalnav li.selected a {
+  color: #3b211b;
+}
+
+#portal-columns {
+  background-color: #ffffff;
+  margin-top: 3px;
+}
+
+#portal-rodape {
+  text-align: right;
+  background-image: url("&dtml-portal_url;/background-menu.jpg");
+  height: 35px;
+  margin-top: 2px;
+  margin-bottom: 40px;
+  padding-top: 2px;
+  padding-right: 10px;
+}
+
+
+/* GERAL */
+
+
+hr {
+  text-align: center;
+  width: 100%;
+  color: #cccccc;
+  background-color: #cccccc;
+  margin: 15px 0;
+}
+
+.icones {
+  float: right;
+  margin-top:-6px;
+}
+
+
+
+/* </dtml-with> */

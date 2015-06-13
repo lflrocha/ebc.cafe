@@ -1,0 +1,192 @@
+/* <dtml-with base_properties> (do not remove this :) */
+/* <dtml-call "REQUEST.set('portal_url', portal_url())"> (not this either :) */
+
+#capa {
+  width: 900px;  
+  margin: 0 -24px;
+  float: left;
+}
+
+#capa .linha1 {
+  background-color: #dde5dd;
+  height: 306px;
+  float: left;
+}
+
+#capa .linha1 .foto {
+  width: 281px;
+  float: left;
+}
+
+#capa .linha1 .box-cinza {
+  width: 609px;
+  float: right;
+  height: 296px;
+  padding: 5px;
+  background-color: #dde5dd;
+}
+
+#capa .linha1 .conteudo {
+
+  height: 252px;
+  background-color: #e8eee8;
+  color: #2d1813;
+  font-size: 11px;
+  padding: 10px 20px;
+  text-align: justify;
+}
+
+#capa .linha1 .anteriores {
+  text-align: center;
+  padding-top: 7px;
+  color: #2d1813;
+  font-size: 10px;
+}
+
+
+#capa .linha2{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  float: left;
+}
+
+#capa .linha2 .esquerda {
+  float:left;
+  margin: 10px 20px 10px 10px;
+  width:260px;
+}
+
+#capa .linha2 .enquete {
+  border: 1px solid #e5ede5;
+  padding: 15px;
+}
+
+#capa .linha2 .maiscafe {
+  margin-top: 10px;
+  border: 1px solid #e5ede5;
+  padding: 15px;
+  font-size: 12px;
+  color: #2d1813;
+}
+
+#capa .linha2 .blog {
+  font-size: 11px;
+  color: #7d7776;
+  text-align: center;
+  margin-top: 5px;
+}
+
+#capa .linha2 .blog a {
+  font-size: 12px;
+  color: #78906d;
+}
+
+#capa .linha2 .direita {
+  float: right;
+  width: 600px;
+}
+
+#capa .linha2 .box {
+  margin-top: 10px;
+  width: 600px;
+  float: right;
+  background-color: #E0E2E1;
+}
+
+#capa .linha2 .videos {
+  float: left;
+  width: 280px;
+  padding: 10px;
+  text-align: center;
+}
+
+#capa .linha2 .trechos-full {
+  float: left;
+  width: 570px;
+  background-color: #E8EDE7;
+  margin: 10px 10px 10px 10px;
+  padding: 5px;
+  height: 233px;
+}
+
+#capa .linha2 .trechos {
+  float: left;
+  width: 270px;
+  background-color: #E8EDE7;
+  margin: 10px 10px 10px 10px;
+  padding: 5px;
+  height: 233px;
+}
+
+
+#capa ul {
+  list-style: none !important;
+  margin-left: 0px;
+}
+
+#capa .data {
+  font-size: 11px;
+  font-weight: bold;
+  color: #717271;
+  float: left;
+}
+
+#capa .titulo {
+  font-size: 18px;
+  font-weight: bold;
+  color: #2d1813;
+  text-align: center;
+  padding: 0 50px;
+}
+
+#capa .titulo a {
+  font-size: 16px;
+  font-weight: bold;
+  color: #2d1813;
+  text-decoration: none;
+}
+
+#capa .titulo a:hover {
+  text-decoration: underline;
+}
+
+#capa .tit-enquete {
+  font-weight: bold;
+  font-size: 14px;
+  color: #78906d;
+}
+
+#capa .enquete {
+  font-size: 12px;
+  color: #2d1813;
+}
+
+#capa a {
+  font-size: 10px;
+  text-decoration: none;
+}
+
+#capa a:hover {
+  text-decoration: underline;
+}
+
+#capa .vid-titulo {
+  font-weight: bold;
+  font-size: 12px;
+  color: #565555;
+}
+
+#capa .vid-description {
+  font-size: 10px;
+  color: #565555;
+  text-align: left;
+  margin-bottom: 0px;
+}
+
+#capa .trecho {
+  font-size: 11px;
+  color: #2d1813;
+}
+
+
+/* </dtml-with> */

@@ -1,0 +1,217 @@
+/* <dtml-with base_properties> (do not remove this :) */
+/* <dtml-call "REQUEST.set('portal_url', portal_url())"> (not this either :) */
+
+.portalMessage {
+    display: none;
+    
+}
+
+#resultado {
+  width: 850px;
+}
+
+#resultado table {
+  width: 100%;
+}
+
+#resultado tr {
+  height: 40px;
+}
+
+#resultado th {
+  vertical-align: bottom;
+}
+
+#resultado a {
+  color: #111111;
+  font-size: 12px;
+  text-decoration: none;
+}
+
+#resultado .even {
+  background-color: #f1f1f1;
+}
+
+#resultado .data {
+  width: 85px;
+  text-align: center;
+}
+
+#resultado .titulo {
+  width: 550px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#tags {
+  padding-top: 30px;
+  clear: both;
+  width: 600px;
+}
+
+#tags-busca {
+  padding-top: 30px;
+  clear: both;
+  width: 750px;
+  text-align: justify;
+  margin: 0 auto;
+}
+
+#tags ul li,
+#tags-busca ul li {
+  display: inline;
+  color: #7d7776;
+  padding-right: 20px;
+/*  white-space: nowrap; */
+}
+
+#tags .tamanho1,
+#tags-busca .tamanho1 {
+  font-size: 10px;
+}
+
+#tags .tamanho2,
+#tags-busca .tamanho2 {
+  font-size: 12px;
+}
+
+#tags .tamanho3,
+#tags-busca .tamanho3 {
+  font-size: 14px;
+}
+
+#tags .tamanho4,
+#tags-busca .tamanho4 {
+  font-size: 16px;
+}
+
+#tags .titulo,
+#tags-busca .titulo {
+  text-weight: bold;
+  font-size: 18px;
+  color: #9e9998;
+  text-align: left;
+}
+
+#tags a,
+#tags-busca a {
+  text-decotarion: none;
+  color: #7d7776;
+  border-bottom: 0px;
+}
+
+#tags a:hover,
+#tags-busca a:hover {
+  text-decoration: underline;
+}
+
+#tags-busca .titulo {
+  padding-left: 20px;
+}
+
+
+
+.listingBar {
+   border: 0px;
+   background-color: transparent;
+}
+
+.listingBar a{
+  text-decoration: underline !important; 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#document-action-socialbookmark {
+display:block;
+float:right;}
+
+#document-action-socialbookmark a,
+#document-action-socialbookmark a:hover,
+#document-action-socialbookmark a:visited {padding:1px;}
+
+#viewlet-social-bookmarks {
+  float: right;
+  width: 780px;
+  z-index: 1;
+  clear: both;
+  border: 0px;
+
+  margin-top:20px;
+  padding-top:0;
+  position:relative;
+  right:15px;
+}
+
+
+
+#viewlet_bookmarks {
+  list-style-image:none;
+  list-style-type:none;
+  margin:0;
+  padding:0;
+
+}
+
+#viewlet_bookmarks li {
+	display: block;
+	float: left;
+	width: 25%;
+	height: 20px;
+}
+
+
+#viewlet_bookmarks li a {
+  color:#000000 !important;
+  font-size:11px;
+  font-weight:bold;
+  text-decoration: !important;
+  border-bottom: 0px;
+  background:none!important;
+}
+
+#viewlet_bookmarks li a:hover {
+  text-decoration: underline;
+}
+
+#exit {
+	padding:0  10px 10px 10px;
+	position: relative;
+	display: block;
+}
+
+#shareit {
+	background: transparent;
+  width: 780px;
+}
+
+
+#shareit a {text-decoration: none !important;}
+ 
+.hidden {display: block;}
+
+/* </dtml-with> */

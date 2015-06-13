@@ -1,0 +1,40 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    i18n_domain="ebc.cafe">
+
+  <!-- configure your content components here -->
+  
+  <!-- -*- extra stuff goes here -*- -->
+  <class class=".video.Video">
+    <require
+        permission="zope2.View"
+        interface="..interfaces.IVideo"
+        />
+    <require
+        permission="cmf.ModifyPortalContent"
+        set_schema="..interfaces.IVideo"
+        />
+  </class>
+  <class class=".trecho.Trecho">
+    <require
+        permission="zope2.View"
+        interface="..interfaces.ITrecho"
+        />
+    <require
+        permission="cmf.ModifyPortalContent"
+        set_schema="..interfaces.ITrecho"
+        />
+  </class>
+  <class class=".programa.Programa">
+    <require
+        permission="zope2.View"
+        interface="..interfaces.IPrograma"
+        />
+    <require
+        permission="cmf.ModifyPortalContent"
+        set_schema="..interfaces.IPrograma"
+        />
+  </class>
+
+</configure>

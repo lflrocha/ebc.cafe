@@ -1,0 +1,42 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+
+<head>
+    <metal:css fill-slot="style_slot">
+        <style type="text/css" media="all" tal:content="string:@import url($portal_url/cafe_apresentacao.css);" />
+    </metal:css>
+</head>
+
+<body>
+
+    <div metal:fill-slot="main">
+
+        <div metal:define-macro="main" id="apresentacao">
+            <div class="esquerda">
+                <div class="texto"
+                     tal:content="structure python:context.texto.CookedBody(stx_level=2)">
+                    Text
+                </div>
+                <div class="audio">
+                    <object type="application/x-shockwave-flash" width="250" height="20"
+                        tal:attributes="data string:${context/portal_url}/player_mp3_maxi.swf">
+                        <param name="movie" tal:attributes="value string:{context/portal_url}/player_mp3_maxi.swf" />
+                        <param name="bgcolor" value="#E8EEE8" />
+                        <param name="FlashVars" tal:attributes="value string:width=250&amp;showinfo=0&amp;showvolume=1&amp;bgcolor1=cccccc&amp;bgcolor2=cfcfcf&amp;slidercolor1=eeeeee&amp;slidercolor2=dddddd&amp;sliderovercolor=ffffff&amp;buttonovercolor=eeeeee&amp;mp3=${context/portal_url}/apresentacao/apresentacao.mp3" />
+                    </object>
+                </div>
+            </div>
+
+            <div class="direita">
+                <img tal:attributes="src string:${portal_url}/apresentacao/foto.jpg">
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

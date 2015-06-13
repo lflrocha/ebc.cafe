@@ -1,0 +1,55 @@
+/* <dtml-with base_properties> (do not remove this :) */
+/* <dtml-call "REQUEST.set('portal_url', portal_url())"> (not this either :) */
+
+#multimidia {
+    height: 320px;
+    background-color: #DEE5DE;
+    margin: 0 -24px;
+    padding: 20px;
+}
+
+#multimidia .videos{
+    width: 48%;
+    float: left;
+    height: 310px;
+    background-color: #EAECE9;
+}
+
+#multimidia .trilha{
+    width: 49%;
+    float: right;
+    margin-top: 20px;
+    height: 60px;
+    background-color: #EAECE9;
+}
+
+#multimidia .fotos {
+    width: 49%;
+    float: right;
+    height: 230px;
+    background-color: #EAECE9;
+}
+
+#multimidia .box {
+    padding-left: 10px;
+}
+
+#multimidia .fotos img{
+    padding: 2px;
+}
+
+#multimidia .titulo,
+#multimidia .titulo  a{
+    color: #78906d;
+    font-weight: bold;
+    font-size: 14px;
+    background-color: #DEE5DE;
+    padding-bottom: 3px;
+    border-bottom: 0px;
+}
+
+#multimidia .titulo  a:hover{
+    text-decoration: underline;
+}
+
+/* </dtml-with> */

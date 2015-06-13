@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<rss version="2.0" 
+     xmlns:tal="http://xml.zope.org/namespaces/tal"
+     xmlns:metal="http://xml.zope.org/namespaces/metal"  
+     xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<!--<tal:x define="dummy python:request.RESPONSE.setHeader('Content-Type', 'text/xml')" />-->
+
+    <channel tal:define="programas python:context.portal_catalog.searchResults(portal_type='Programa',sort_on='getData',sort_order='reverse')[:10];">
+                       
+        <title>Café com o Presidente</title>
+        <link tal:content="here/absolute_url"></link>
+        <description tal:content="here/Description"></description>
+        <language>pt-br</language>
+        <generator>Plone</generator>
+
+                  <item tal:condition="programas"
+                        tal:repeat="programa programas">
+                      <title  tal:define="data1 programa/getData;
+                                          data python:data1.strftime('%d/%m/%Y');">Programa Café com o Presidente - <span tal:replace="data" /></title>
+                      <link tal:content="programa/getURL"></link>
+                      <description tal:content="programa/Title"></description>
+                      <author>EBC Serviços</author>
+                      <tal:repeat repeat="subj programa/Subject">
+                          <category tal:content="subj"></category>
+                      </tal:repeat>
+                      <pubDate tal:content="structure python: DateTime(programa.getData).rfc822()"> </pubDate>
+                      <enclosure tal:attributes="type string:audio/mpeg;
+                                                 url string:${programa/getURL}/at_download/audio.mp3;
+                                                 length python:programa.getObject().get_size()" />
+                        
+
+
+                  </item>
+
+
+
+
+
+    </channel>
+
+</rss>

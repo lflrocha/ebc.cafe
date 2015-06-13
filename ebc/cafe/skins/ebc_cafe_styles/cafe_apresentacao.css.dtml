@@ -1,0 +1,36 @@
+/* <dtml-with base_properties> (do not remove this :) */
+/* <dtml-call "REQUEST.set('portal_url', portal_url())"> (not this either :) */
+
+#apresentacao {
+  background-color: #dde5dd;
+  width: 900px;  
+  height: 307px;
+  margin: 0 -24px;
+}
+
+#apresentacao .esquerda {
+  float: left;
+  width: 530px;
+  height: 307px;
+}
+
+#apresentacao .texto {
+  background-color: #e8eee8;
+  height: 233px;  
+  margin: 5px;
+  padding: 20px;
+  overflow: auto;
+}
+
+#apresentacao .audio {
+  padding-left: 5px;
+    
+}
+
+#apresentacao .direita {
+  float: right;
+  width: 361px;
+  height: 307px;  
+}
+
+/* </dtml-with> */

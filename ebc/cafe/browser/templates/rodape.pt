@@ -1,0 +1,8 @@
+<div id="portal-rodape"
+     i18n:domain="plone">
+
+<a href="http://www.ebcservicos.ebc.com.br" target="_blank">
+    <img src="logo-ebcservicos.png"
+         tal:attributes="src string:${view/navigation_root_url}/logo-ebcservicos.png" >
+</a>
+ </div>

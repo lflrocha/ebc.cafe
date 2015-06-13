@@ -1,0 +1,42 @@
+/* <dtml-with base_properties> (do not remove this :) */
+/* <dtml-call "REQUEST.set('portal_url', portal_url())"> (not this either :) */
+
+
+#programas .ano {
+  width: 832px;
+}
+
+#mes {
+  float: left;
+  width: 230px;
+  margin: 10px;
+  padding: 0 10px;
+  border-left: 1px solid #c2cfc2;
+  height: auto;
+}
+
+#mes .nome {
+  font-size: 12px;
+  color: #868F86;
+  font-weight: bold;
+}
+
+#mes .programas{
+  margin-top: 10px;
+  font-size: 9px;
+  color: #4a4a43;
+  line-height: 15px;
+}
+
+#mes a {
+  text-decoration: none;
+  display: block;
+  margin-top: 3px;
+  padding: 3px;
+}
+
+#mes a:hover {
+  background-color: #c1ccc1;
+}
+
+/* </dtml-with> */

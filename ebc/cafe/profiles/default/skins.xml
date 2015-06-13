@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<object name="portal_skins" allow_any="False" cookie_persistence="False"
+   default_skin="Cafe Theme">
+
+ <object name="ebc_cafe_custom_images"
+    meta_type="Filesystem Directory View"
+    directory="ebc.cafe:skins/ebc_cafe_custom_images"/>
+ <object name="ebc_cafe_custom_templates"
+    meta_type="Filesystem Directory View"
+    directory="ebc.cafe:skins/ebc_cafe_custom_templates"/>
+ <object name="ebc_cafe_styles"
+    meta_type="Filesystem Directory View"
+    directory="ebc.cafe:skins/ebc_cafe_styles"/>
+ <object name="ebc_cafe_js"
+    meta_type="Filesystem Directory View"
+    directory="ebc.cafe:skins/ebc_cafe_js"/>
+ <object name="ebc_cafe_players"
+    meta_type="Filesystem Directory View"
+    directory="ebc.cafe:skins/ebc_cafe_players"/>
+
+
+ <skin-path name="Cafe Theme" based-on="Plone Default">
+  <layer name="ebc_cafe_custom_images"
+     insert-after="custom"/>
+  <layer name="ebc_cafe_custom_templates"
+     insert-after="ebc_cafe_custom_images"/>
+  <layer name="ebc_cafe_styles"
+     insert-after="ebc_cafe_custom_templates"/>
+  <layer name="ebc_cafe_js"
+     insert-after="ebc_cafe_styles"/>
+  <layer name="ebc_cafe_players"
+     insert-after="ebc_cafe_js"/>
+ </skin-path>
+
+</object>

@@ -1,0 +1,110 @@
+/* <dtml-with base_properties> (do not remove this :) */
+/* <dtml-call "REQUEST.set('portal_url', portal_url())"> (not this either :) */
+
+
+#programa a{
+  font-size: 10px;
+  text-decoration: none;
+}
+
+#programa {
+  background-color: #dde5dd;
+  padding: 5px;
+  float: left;
+  width: 840px;
+  margin: 0 0 25px 0;
+}
+
+#programa .interno {
+  background-color: #e8eee8;
+  padding: 20px;
+  float: left;
+  width: 800px;
+}
+
+#programa .data {
+  font-weight: bold;
+  font-size: 11px;
+  color: #565555;
+}
+
+#programa .titulo {
+  font-weight: bold;
+  font-size: 13px;
+  color: #2d1813;
+  text-decoration: underline;
+  text-align: center;
+  margin-top: 15px;
+}
+
+#programa .player {
+  margin-top: 20px;
+  margin-bottom: 10px;  
+}
+
+#programa .destaque {
+  font-weight: bold;
+  font-size: 13px; 
+  color: #b0b4b0;
+  text-decoration: capitalize;
+  margin-bottom:10px; 
+}
+
+#programa .transcricao {
+  font-size: 11px; 
+  color: #2d1813;
+}
+
+#programa .assuntos {
+  font-weight: bold;
+  font-size: 11px; 
+  color: #9e9998; 
+}
+
+#programa .multimidia {
+  clear: both;
+  float: left;
+  width: 100%;
+}
+
+#programa .esquerda {
+  width: 50%;
+  float: left;  
+}
+
+#programa .direita {
+  width: 40%;
+  float: right;   
+}
+
+#programa .trecho,
+#programa .video {
+  font-size: 10px;
+  color: #392621;
+}
+
+#programa .texto {
+  float: left;
+  width:100%;
+  font-size: 12px;
+}
+
+#programa .assuntos a {
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 11px;
+  color: #9e9998;
+}
+
+#programa .assuntos a:hover {
+  text-decoration: underline;
+}
+
+#programa .voltar {
+  width: 100%;
+  text-align: center;
+  float: left;
+  margin-bottom: -20px;
+}
+
+/* </dtml-with> */

@@ -1,0 +1,76 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+
+<head>
+    <metal:css fill-slot="style_slot">
+        <style type="text/css" media="all" tal:content="string:@import url($portal_url/cafe_programas.css);" />
+        <style type="text/css" media="all" tal:content="string:@import url($portal_url/jquery.tabs.css);" />
+
+    </metal:css>
+
+    <metal:js fill-slot="javascript_head_slot">
+      <script type="text/javascript" tal:attributes="src string:${portal_url}/jquery.history_remote.pack.js"></script>
+      <script type="text/javascript" tal:attributes="src string:${portal_url}/jquery.tabs.pack.js"></script>
+    </metal:js>
+
+</head>
+<body>
+
+
+
+    <div metal:fill-slot="main">
+
+        <div metal:define-macro="main" id="programas"
+             tal:define="programas context/getProgramas;
+                         anos python:programas.keys();
+                         meses python:{1:'Janeiro', 2:'Fevereiro', 3:'Mar&ccedil;;o', 4:'Abril', 5:'Maio', 6:'Junho', 7:'Julho', 8:'Agosto', 9:'Setembro', 10:'Outubro', 11:'Novembro', 12:'Dezembro'}">
+
+            <script type="text/javascript"
+                tal:define="last python:len(anos)"
+                tal:content="structure string:jq(function() { jq('#tabs').tabs($last);});">
+                
+                
+            </script>
+
+            <div id="tabs">
+                <ul>
+                    <li tal:repeat="ano anos">
+                        <a tal:attributes="href string:tpl_programas#tabs-${ano}"  tal:content="ano" />
+                    </li>
+                </ul>
+                
+                <tal:rep repeat="ano python:programas.keys()">
+                    <div tal:attributes="id string:tabs-${ano}" class="ano">
+                        <tal:rep repeat="mes python:range(1,13)">
+                            <tal:def define="progs python:programas[ano][mes]">
+                                <div id="mes"
+                                     tal:condition="progs"
+                                     tal:define="clear python:mes%3;
+                                                 t1 python:test(clear==0,'clear: right','');
+                                                 t2 python:test(clear==1,'clear: left',t1);"
+                                     tal:attributes="style t2">
+                                    <span class="nome" tal:content="structure python:meses[mes]" /> <br />
+                                    <div class="programas">
+                                        <tal:rep repeat="prog progs">
+                                            <a tal:attributes="href prog/getURL">
+                                                Dia <span tal:content="python:DateTime(prog.getData).day()" /> - 
+                                                <span tal:content="prog/Title" />
+                                            </a>
+                                        </tal:rep>
+                                    </div>
+                                </div>
+                            </tal:def>
+                        </tal:rep>
+                    </div>
+                </tal:rep>    
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
